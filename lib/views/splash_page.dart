@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_food_delivery_app/views/get_started_page.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -10,14 +11,19 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
-
   @override
   void initState() {
     super.initState();
     // delay 3 seconds before navigating to home page
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(
+        context,
+        GetStartedPage.routeName,
+        arguments: GetStartedPageArguments(
+          title: 'Delivery',
+          description: 'Order food from your favorite restaurants',
+        ),
+      );
     });
   }
 

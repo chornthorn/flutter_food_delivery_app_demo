@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../views/get_started_page.dart';
 import '../views/home_page.dart';
 import '../views/splash_page.dart';
 
-Route<RouteSettings> onGenerateRoute(settings) {
+Route<RouteSettings> onGenerateRoute(RouteSettings settings) {
+  var args = settings.arguments;
+
   switch (settings.name) {
     case SplashPage.routeName:
       return MaterialPageRoute(
@@ -11,7 +14,15 @@ Route<RouteSettings> onGenerateRoute(settings) {
       );
     case HomePage.routeName:
       return MaterialPageRoute(
-        builder: (context) => HomePage(),
+        builder: (context) => HomePage(
+          arguments: args as Map<String, dynamic>,
+        ),
+      );
+    case GetStartedPage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => GetStartedPage(
+          arguments: args as GetStartedPageArguments,
+        ),
       );
     default:
       return MaterialPageRoute(
