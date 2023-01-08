@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_food_delivery_app/views/home_page.dart';
+
+import 'main_page.dart';
 
 class GetStartedPageArguments {
   final String title;
@@ -66,13 +67,9 @@ class GetStartedPage extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushNamed(
+                          Navigator.pushReplacementNamed(
                             context,
-                            HomePage.routeName,
-                            arguments: {
-                              'title': arguments.title,
-                              'description': arguments.description,
-                            },
+                            MainPage.routeName,
                           );
                         },
                         child: const Text("Get Started"),

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_food_delivery_app/views/chat_page.dart';
+import 'package:flutter_food_delivery_app/views/main_page.dart';
+import 'package:flutter_food_delivery_app/views/orders_page.dart';
+import 'package:flutter_food_delivery_app/views/profile_page.dart';
 
 import '../views/get_started_page.dart';
 import '../views/home_page.dart';
@@ -12,17 +16,32 @@ Route<RouteSettings> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => SplashPage(),
       );
-    case HomePage.routeName:
-      return MaterialPageRoute(
-        builder: (context) => HomePage(
-          arguments: args as Map<String, dynamic>,
-        ),
-      );
+
     case GetStartedPage.routeName:
       return MaterialPageRoute(
         builder: (context) => GetStartedPage(
           arguments: args as GetStartedPageArguments,
         ),
+      );
+    case MainPage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => MainPage(),
+      );
+    case HomePage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => HomePage(),
+      );
+    case OrdersPage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => OrdersPage(),
+      );
+    case ChatPage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => ChatPage(),
+      );
+    case ProfilePage.routeName:
+      return MaterialPageRoute(
+        builder: (context) => ProfilePage(),
       );
     default:
       return MaterialPageRoute(
