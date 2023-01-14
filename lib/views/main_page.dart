@@ -3,7 +3,7 @@ import 'package:flutter_food_delivery_app/views/chat_page.dart';
 import 'package:flutter_food_delivery_app/views/home_page.dart';
 import 'package:flutter_food_delivery_app/views/orders_page.dart';
 import 'package:flutter_food_delivery_app/views/profile_page.dart';
-
+import 'package:animations/animations.dart';
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -28,43 +28,68 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomAppBar(
-        elevation: 0,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          margin: const EdgeInsets.all(16),
-          height: 75,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _buildBottomNavigationBarItem(
-                icon: Icons.home,
-                label: 'Home',
-                index: 0,
-              ),
-              _buildBottomNavigationBarItem(
-                icon: Icons.shopping_bag,
-                label: 'Orders',
-                index: 1,
-              ),
-              _buildBottomNavigationBarItem(
-                icon: Icons.chat,
-                label: 'Chat',
-                index: 2,
-              ),
-              _buildBottomNavigationBarItem(
-                icon: Icons.person,
-                label: 'Profile',
-                index: 3,
-              ),
-            ],
-          ),
+      // animated when body change
+      body: SafeArea(
+        bottom: false,
+        child: PageTransitionSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child: _pages[_selectedIndex],
+          transitionBuilder: (child, animation, secondaryAnimation) {
+            return SharedAxisTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.horizontal,
+              child: child,
+            );
+          },
+        ),
+      ),
+      extendBody: true,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.blue.withOpacity(0.05),
+              spreadRadius: 1,
+              blurRadius: 10,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        margin: const EdgeInsets.only(
+          left: 16,
+          right: 16,
+          bottom: 26,
+        ),
+        height: 75,
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _buildBottomNavigationBarItem(
+              icon: Icons.home,
+              label: 'Home',
+              index: 0,
+            ),
+            _buildBottomNavigationBarItem(
+              icon: Icons.shopping_bag,
+              label: 'Orders',
+              index: 1,
+            ),
+            _buildBottomNavigationBarItem(
+              icon: Icons.chat,
+              label: 'Chat',
+              index: 2,
+            ),
+            _buildBottomNavigationBarItem(
+              icon: Icons.person,
+              label: 'Profile',
+              index: 3,
+            ),
+          ],
         ),
       ),
     );
@@ -83,27 +108,36 @@ class _MainPageState extends State<MainPage> {
           _selectedIndex = index;
         });
       },
-      child: Container(
+      // animation when click
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 350),
+        padding:   EdgeInsets.symmetric(vertical: 12, horizontal: _selectedIndex == index ? 26 : 12),
         decoration: BoxDecoration(
           color: _selectedIndex == index ? Colors.red.shade50 : Colors.white,
           borderRadius: BorderRadius.circular(8),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+        curve: Curves.fastLinearToSlowEaseIn,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              color: _selectedIndex == index ? Colors.red : Colors.grey,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 350),
+              child: Icon(
+                icon,
+                color: _selectedIndex == index ? Colors.red : Colors.red.shade400,
+              ),
             ),
-            const SizedBox(width: 3),
+            const SizedBox(width: 8),
             if (_selectedIndex == index)
-              Text(
-                label,
-                style: TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.bold,
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 350),
+                child: Text(
+                  label,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
           ],

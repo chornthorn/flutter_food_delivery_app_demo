@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../common/constants.dart';
+import '../components/restaurant_item_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,147 +16,75 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildTopSection(),
-              _buildSearchSectionWidget(),
-              _buildBannerWidget(context),
-              _TitleSectionWidget(
-                leadingText: 'Popular Restaurants',
-                trailingText: 'View All',
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildTopSection(),
+            _buildSearchSectionWidget(),
+            _buildBannerWidget(context),
+            _TitleSectionWidget(
+              leadingText: 'Popular Restaurants',
+              trailingText: 'View All',
+              onTap: () {},
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  RestaurantItemCard(
+                    index: 0,
+                    title: 'Lovy Food',
+                    subtitle: '10 min',
+                    imagePath: 'assets/img/lovy_food.png',
+                  ),
+                  RestaurantItemCard(
+                    index: 1,
+                    title: 'Cloudy Food',
+                    subtitle: '10 min',
+                    imagePath: 'assets/img/cloudy_resto.png',
+                  ),
+                  RestaurantItemCard(
+                    index: 2,
+                    title: 'Haty Food',
+                    subtitle: '10 min',
+                    imagePath: 'assets/img/halty_food.png',
+                  ),
+                ],
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...List.generate(4, (index) {
-                      return Container(
-                          height: 180,
-                          width: 160,
-                          margin:  EdgeInsets.only(
-                            right: 16,
-                            bottom: 16,
-                            left: index == 0 ? 16 : 0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 80,
-                                width: 80,
-                                child: Image.asset('assets/img/lovy_food.png'),
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                'Lovy Food',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle1!
-                                    .copyWith(
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                '10 min',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2!
-                                    .copyWith(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.grey,
-                                    ),
-                              ),
-                            ],
-                          ));
-                    }),
-                  ],
-                ),
+            ),
+            _TitleSectionWidget(
+              leadingText: 'Popular Foods',
+              trailingText: 'View All',
+              onTap: () {},
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  RestaurantItemCard(
+                    index: 0,
+                    title: 'Circlo Resto',
+                    subtitle: '10 min',
+                    imagePath: 'assets/img/circlo_resto.png',
+                  ),
+                  RestaurantItemCard(
+                    index: 1,
+                    title: 'McDonald\'s',
+                    subtitle: '10 min',
+                    imagePath: 'assets/img/halty_food.png',
+                  ),
+                  RestaurantItemCard(
+                    index: 2,
+                    title: 'Healthy Food',
+                    subtitle: '10 min',
+                    imagePath: 'assets/img/healty_resto.png',
+                  ),
+                ],
               ),
-              _TitleSectionWidget(
-                leadingText: 'Popular Foods',
-                trailingText: 'View All',
-                onTap: (){},
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ...List.generate(4, (index) {
-                      return Container(
-                          height: 180,
-                          width: 160,
-                          margin:  EdgeInsets.only(
-                            right: 16,
-                            bottom: 16,
-                            left: index == 0 ? 16 : 0,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.1),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: const Offset(0, 3),
-                              ),
-                            ],
-                          ),
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                height: 80,
-                                width: 80,
-                                child: Image.asset('assets/img/lovy_food.png'),
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                'Lovy Food',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle1!
-                                    .copyWith(
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                '10 min',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .subtitle2!
-                                    .copyWith(
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ));
-                    }),
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(height: 120),
+          ],
         ),
       ),
     );
@@ -185,6 +114,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
+          const SizedBox(width: 10),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -226,6 +156,14 @@ class _HomePageState extends State<HomePage> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.blue.withOpacity(0.04),
+                  spreadRadius: 1,
+                  blurRadius: 5,
+                  offset: Offset(0, 1), // changes position of shadow
+                ),
+              ],
             ),
             child: Row(
               children: [
@@ -249,6 +187,14 @@ class _HomePageState extends State<HomePage> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blue.withOpacity(0.04),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 1), // changes position of shadow
+              ),
+            ],
           ),
           child: IconButton(
             onPressed: () {
@@ -276,23 +222,48 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.all(4),
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(10),
             ),
           ),
           const SizedBox(width: 16),
           Expanded(
             child: Text(
-              'Welcome back!',
+              'Hello, Thorn!',
               style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     color: Colors.black,
                     fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
             ),
           ),
-          Icon(
-            Icons.notifications,
-            color: Theme.of(context).primaryColor,
+          Stack(
+            children: [
+              Icon(
+                Icons.notifications_active,
+                color: Theme.of(context).primaryColor,
+              ),
+              Positioned(
+                right: 0,
+                child: Container(
+                  height: 10,
+                  width: 10,
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '1',
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                            color: Colors.white,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -334,4 +305,12 @@ class _TitleSectionWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+class RestaurantModel {
+  final String title;
+  final String subtitle;
+  final String imagePath;
+
+  RestaurantModel(this.title, this.subtitle, this.imagePath);
 }

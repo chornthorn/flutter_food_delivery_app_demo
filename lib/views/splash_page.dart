@@ -15,7 +15,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     // delay 3 seconds before navigating to home page
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 1), () {
       Navigator.pushReplacementNamed(
         context,
         GetStartedPage.routeName,

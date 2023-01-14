@@ -11,8 +11,10 @@ class OrdersPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Orders Page'),
       ),
-      body: const Center(
-        child: Text('Orders Page'),
+      body: Container(
+        child: const Center(
+          child: Text('Orders Page'),
+        ),
       ),
     );
   }
