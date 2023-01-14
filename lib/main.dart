@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           secondary: secondaryColor,
           tertiary: tertiaryColor,
         ),
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Color(0xffF5F6F9),
         appBarTheme: AppBarTheme(
           color: Colors.transparent,
           elevation: 0,
@@ -45,13 +45,14 @@ class MyApp extends StatelessWidget {
               color: Colors.white,
               fontSize: 16,
             ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 50,
-              vertical: 15,
-            ),
+            // padding: const EdgeInsets.symmetric(
+            //   horizontal: 50,
+            //   vertical: 15,
+            // ),
             shadowColor: Colors.transparent,
           ),
         ),
+        bottomAppBarColor: Color(0xffF5F6F9),
       ),
       initialRoute: SplashPage.routeName,
       onGenerateRoute: onGenerateRoute,
