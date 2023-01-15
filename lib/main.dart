@@ -3,14 +3,23 @@ import 'package:flutter/services.dart';
 import 'package:flutter_food_delivery_app/common/constants.dart';
 import 'package:flutter_food_delivery_app/views/splash_page.dart';
 
+import 'models/my_model.dart';
 import 'router/app_router.dart';
 
+
+
 void main() {
-  runApp(MyApp());
+  runApp(
+    MyModel(
+      name: "Name from main",
+      myColor: Colors.blue,
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

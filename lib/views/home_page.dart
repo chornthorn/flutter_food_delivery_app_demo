@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_food_delivery_app/main.dart';
 
 import '../common/constants.dart';
 import '../components/restaurant_item_card.dart';
 import '../components/search_and_filter_widget.dart';
+import '../models/my_model.dart';
 import 'popular_list_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,12 +19,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          MyModel.of(context).changeColor();
+        },
+        child: const Icon(Icons.add),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildTopSection(),
+            _buildTopSection(MyModel.of(context).name ),
+            Container(
+              height: 200,
+              width: 200,
+              color: MyModel.of(context).myColor,
+            ),
             SearchAndFilterWidget(),
             _buildBannerWidget(context),
             _TitleSectionWidget(
@@ -177,7 +191,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  _buildTopSection() {
+  _buildTopSection(String name) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Row(
@@ -196,7 +210,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(width: 16),
           Expanded(
             child: Text(
-              'Hello, Thorn!',
+              'Hello, $name',
               style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     color: Colors.black,
                     fontSize: 20,
