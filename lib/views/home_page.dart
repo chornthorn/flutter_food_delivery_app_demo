@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../common/constants.dart';
 import '../components/restaurant_item_card.dart';
+import '../components/search_and_filter_widget.dart';
+import 'popular_list_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,12 +23,14 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildTopSection(),
-            _buildSearchSectionWidget(),
+            SearchAndFilterWidget(),
             _buildBannerWidget(context),
             _TitleSectionWidget(
               leadingText: 'Popular Restaurants',
               trailingText: 'View All',
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, PopularListPage.routeName);
+              },
             ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
@@ -37,18 +41,31 @@ class _HomePageState extends State<HomePage> {
                     title: 'Lovy Food',
                     subtitle: '10 min',
                     imagePath: 'assets/img/lovy_food.png',
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      bottom: 16,
+                      left: 16,
+                    ),
                   ),
                   RestaurantItemCard(
                     index: 1,
                     title: 'Cloudy Food',
                     subtitle: '10 min',
                     imagePath: 'assets/img/cloudy_resto.png',
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      bottom: 16,
+                    ),
                   ),
                   RestaurantItemCard(
                     index: 2,
                     title: 'Haty Food',
                     subtitle: '10 min',
                     imagePath: 'assets/img/halty_food.png',
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      bottom: 16,
+                    ),
                   ),
                 ],
               ),
@@ -64,21 +81,34 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   RestaurantItemCard(
                     index: 0,
-                    title: 'Circlo Resto',
+                    title: 'Lovy Food',
                     subtitle: '10 min',
-                    imagePath: 'assets/img/circlo_resto.png',
+                    imagePath: 'assets/img/lovy_food.png',
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      bottom: 16,
+                      left: 16,
+                    ),
                   ),
                   RestaurantItemCard(
                     index: 1,
-                    title: 'McDonald\'s',
+                    title: 'Cloudy Food',
                     subtitle: '10 min',
-                    imagePath: 'assets/img/halty_food.png',
+                    imagePath: 'assets/img/cloudy_resto.png',
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      bottom: 16,
+                    ),
                   ),
                   RestaurantItemCard(
                     index: 2,
-                    title: 'Healthy Food',
+                    title: 'Haty Food',
                     subtitle: '10 min',
-                    imagePath: 'assets/img/healty_resto.png',
+                    imagePath: 'assets/img/halty_food.png',
+                    margin: EdgeInsets.only(
+                      right: 16,
+                      bottom: 16,
+                    ),
                   ),
                 ],
               ),
@@ -144,68 +174,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-    );
-  }
-
-  Row _buildSearchSectionWidget() {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.blue.withOpacity(0.04),
-                  spreadRadius: 1,
-                  blurRadius: 5,
-                  offset: Offset(0, 1), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    enabled: false,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                      hintText: 'Search',
-                      suffixIcon: Icon(Icons.search),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.blue.withOpacity(0.04),
-                spreadRadius: 1,
-                blurRadius: 5,
-                offset: Offset(0, 1), // changes position of shadow
-              ),
-            ],
-          ),
-          child: IconButton(
-            onPressed: () {
-              print('Filter');
-            },
-            splashRadius: 1,
-            icon: Icon(Icons.filter_list),
-          ),
-        ),
-        const SizedBox(width: 16),
-      ],
     );
   }
 

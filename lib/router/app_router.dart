@@ -6,7 +6,7 @@ import 'package:flutter_food_delivery_app/views/profile_page.dart';
 
 import '../views/get_started_page.dart';
 import '../views/home_page.dart';
-import '../views/popular_page.dart';
+import '../views/popular_list_page.dart';
 import '../views/splash_page.dart';
 
 Route<RouteSettings> onGenerateRoute(RouteSettings settings) {
@@ -44,9 +44,9 @@ Route<RouteSettings> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => ProfilePage(),
       );
-      case PopularPage.routeName:
+      case PopularListPage.routeName:
       return MaterialPageRoute(
-        builder: (context) => PopularPage(),
+        builder: (context) => PopularListPage(),
       );
     default:
       return MaterialPageRoute(

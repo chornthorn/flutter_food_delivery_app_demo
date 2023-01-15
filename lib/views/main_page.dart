@@ -41,6 +41,11 @@ class _MainPageState extends State<MainPage> {
               transitionType: SharedAxisTransitionType.horizontal,
               child: child,
             );
+            // return FadeThroughTransition(
+            //   animation: animation,
+            //   secondaryAnimation: secondaryAnimation,
+            //   child: child,
+            // );
           },
         ),
       ),

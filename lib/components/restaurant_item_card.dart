@@ -7,24 +7,21 @@ class RestaurantItemCard extends StatelessWidget {
     this.index = 0,
     required this.title,
     required this.subtitle,
-    required this.imagePath,
+    required this.imagePath, required this.margin,
   }) : super(key: key);
 
   final int index;
   final String title;
   final String subtitle;
   final String imagePath;
+  final EdgeInsetsGeometry margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 180,
       width: 160,
-      margin: EdgeInsets.only(
-        right: 16,
-        bottom: 16,
-        left: index == 0 ? 16 : 0,
-      ),
+      margin: margin,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
